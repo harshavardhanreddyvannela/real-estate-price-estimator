@@ -15,28 +15,6 @@ Built with **scikit-learn**, **FastAPI** (backend), and **Streamlit** (frontend)
 
 ---
 
-## 🗂️ Project Structure
-
-```
-.
-├── backend/
-│   ├── app.py
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── model/
-│       └── model.joblib
-├── frontend/
-│   ├── app.py
-│   ├── Dockerfile
-│   └── requirements.txt
-├── model_training/
-│   ├── data.csv
-│   └── notebook.ipynb
-└── README.md
-```
-
----
-
 ## ⚙️ Setup & Usage
 
 ### 1. Clone the repository
@@ -102,7 +80,7 @@ docker run -p 8501:8501 real-estate-frontend
 
 ## 📸 Sample Screenshot
 
-![Sample UI Screenshot](![alt text](https://github.com/harshavardhanreddyvannela/real-estate-price-estimator/blob/Result.jpg?raw=true)
+![Sample UI Screenshot](![alt text](https://github.com/harshavardhanreddyvannela/real-estate-price-estimator/blob/main/Result.png?raw=true)
 )
 
 ---
