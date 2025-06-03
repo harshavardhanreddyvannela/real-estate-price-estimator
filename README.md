@@ -102,14 +102,14 @@ docker run -p 8501:8501 real-estate-frontend
 
 ## 📸 Sample Screenshot
 
-![Sample UI Screenshot](https://your-screenshot-link.png)
+![Sample UI Screenshot](![alt text](https://github.com/harshavardhanreddyvannela/real-estate-price-estimator/blob/Result.jpg?raw=true)
+)
 
 ---
 
 ## 🌐 Live Demo
 
-- [Frontend (Streamlit App)](https://your-frontend-link.com)
-- [Backend API (FastAPI)](https://your-backend-link.com)
+- [Frontend (Streamlit App)](https://real-estate-frontend-e6jn.onrender.com)
 
 ---
 
