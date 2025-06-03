@@ -1,10 +1,21 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 import joblib
 import pandas as pd
-import os
 
 app = FastAPI()
+
+# Allow all origins (for testing)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Load model
 model = joblib.load("model/model.joblib")
 
 class House(BaseModel):
@@ -14,6 +25,10 @@ class House(BaseModel):
     stories: int
     parking: int
     location: str  # not used in model
+
+@app.get("/")
+def root():
+    return {"message": "Backend is running"}
 
 @app.post("/predict")
 def predict_price(data: House):
