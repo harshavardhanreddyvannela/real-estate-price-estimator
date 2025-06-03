@@ -66,13 +66,16 @@ if st.button("🔍 Predict Price"):
         "B": B,
         "LSTAT": LSTAT
     }
-    url = os.getenv("BACKEND_URL", "https://real-estate-backend-c8g2.onrender.com/predict")
+
+    base_url = os.getenv("BACKEND_URL", "https://real-estate-backend-c8g2.onrender.com").rstrip("/")
+    url = f"{base_url}/predict"
+
     try:
         r = requests.post(url, json=payload)
         if r.status_code == 200:
             price = r.json().get("predicted_price")
-            st.success(f"💰 Estimated Price: ${price * 1000:,.2f}")  # MEDV is in $1000 units
+            st.success(f"💰 Estimated Price: ${price * 1000:,.2f}")
         else:
-            st.error(f"❌ Prediction failed. Status code: {r.status_code}")
+            st.error(f"❌ Prediction failed (status {r.status_code}): {r.text}")
     except Exception as e:
         st.error(f"⚠️ Backend error: {e}")

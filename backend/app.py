@@ -6,25 +6,33 @@ import pandas as pd
 
 app = FastAPI()
 
-# Allow all origins (for testing)
+# CORS setup
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Change in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Load model
+# Load trained model
 model = joblib.load("model/model.joblib")
 
+# Pydantic model with 13 features
 class House(BaseModel):
-    area: float
-    bedrooms: int
-    bathrooms: int
-    stories: int
-    parking: int
-    location: str  # not used in model
+    CRIM: float
+    ZN: float
+    INDUS: float
+    CHAS: int
+    NOX: float
+    RM: float
+    AGE: float
+    DIS: float
+    RAD: int
+    TAX: float
+    PTRATIO: float
+    B: float
+    LSTAT: float
 
 @app.get("/")
 def root():
@@ -32,12 +40,6 @@ def root():
 
 @app.post("/predict")
 def predict_price(data: House):
-    df = pd.DataFrame([{
-        "area": data.area,
-        "bedrooms": data.bedrooms,
-        "bathrooms": data.bathrooms,
-        "stories": data.stories,
-        "parking": data.parking
-    }])
+    df = pd.DataFrame([data.dict()])
     prediction = model.predict(df)[0]
     return {"predicted_price": round(prediction, 2)}
