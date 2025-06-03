@@ -29,7 +29,7 @@ if st.button("Predict Price"):
         "parking": parking,
         "location": f"{coords['lat']},{coords['lng']}"
     }
-    url = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
+    url = os.getenv("BACKEND_URL", "https://real-estate-backend-c8g2.onrender.com/predict")
     r = requests.post(url, json=payload)
     if r.status_code == 200:
         st.success(f"💰 Estimated Price: ${r.json()['predicted_price']}")
