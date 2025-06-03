@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 app = FastAPI()
-model = joblib.load("model/model.pkl")
+model = joblib.load("model/model.joblib")
 
 class House(BaseModel):
     area: float
