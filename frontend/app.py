@@ -48,28 +48,18 @@ else:
 st.info(f"📌 Selected Location: Latitude: `{coords['lat']:.5f}`, Longitude: `{coords['lng']:.5f}`")
 
 # ============================
-# 🏘️ Responsive Input Form
+# 🏘️ Property Input Form
 # ============================
 st.markdown("#### 🏘️ Property Details")
 
-# Detect screen size for responsive layout
-is_mobile = st.runtime.scriptrunner.get_script_run_context().session_info.client.display_width < 768
-
-if is_mobile:
+col1, col2 = st.columns(2)
+with col1:
     area = st.number_input("Area (sqft)", value=1000, step=50)
     bedrooms = st.slider("Bedrooms", 1, 10, 3)
-    bathrooms = st.slider("Bathrooms", 1, 5, 2)
     stories = st.slider("Stories", 1, 3, 1)
+with col2:
+    bathrooms = st.slider("Bathrooms", 1, 5, 2)
     parking = st.slider("Parking", 0, 5, 1)
-else:
-    col1, col2 = st.columns(2)
-    with col1:
-        area = st.number_input("Area (sqft)", value=1000, step=50)
-        bedrooms = st.slider("Bedrooms", 1, 10, 3)
-        stories = st.slider("Stories", 1, 3, 1)
-    with col2:
-        bathrooms = st.slider("Bathrooms", 1, 5, 2)
-        parking = st.slider("Parking", 0, 5, 1)
 
 # ===================
 # 🔮 Prediction Button
